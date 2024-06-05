@@ -3,6 +3,7 @@
         self.jautajumi = jautajumi
         
     def pildit_testu(self):
+        nepareizi_atbildets = []
         pareizas_atbildes = 0
         
         for i, q in enumerate(self.jautajumi, 1):
@@ -18,9 +19,12 @@
                 pareizas_atbildes = pareizas_atbildes + 1
                 print(pareizas_atbildes)
             else:
-                print('nepareizi')
+                nepareizi_atbildets.append(i-1)
         print("#####################################################################################")
         print("\nAtbildēts pareizi uz ",pareizas_atbildes," jautājumiem.\n")
+        
+        if len(nepareizi_atbildets) > 0:
+            print("Nepareizi atbildēti jautājumi: \n")
                 
 jautajumi = [
     {
