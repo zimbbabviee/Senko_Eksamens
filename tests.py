@@ -2,7 +2,9 @@
     def __init__(self, jautajumi):
         self.jautajumi = jautajumi
         
-    def pildit_testu(self):  
+    def pildit_testu(self):
+        pareizas_atbildes = 0
+        
         for i, q in enumerate(self.jautajumi, 1):
             print("--------------------------------------------------------------------------------")
             print(f"\nJautajums {i}: {q['jautajums']}")
@@ -13,7 +15,8 @@
             lietotaja_atbilde = set(input_atbilde.split(','))
             
             if lietotaja_atbilde == q['pareizas_atbildes']:
-                print('pareizi')
+                pareizas_atbildes = pareizas_atbildes + 1
+                print(pareizas_atbildes)
             else:
                 print('nepareizi')
                 
