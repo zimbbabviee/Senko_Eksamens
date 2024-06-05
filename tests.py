@@ -17,7 +17,6 @@
             
             if lietotaja_atbilde == q['pareizas_atbildes']:
                 pareizas_atbildes = pareizas_atbildes + 1
-                print(pareizas_atbildes)
             else:
                 nepareizi_atbildets.append(i-1)
         print("#####################################################################################")
@@ -25,6 +24,11 @@
         
         if len(nepareizi_atbildets) > 0:
             print("Nepareizi atbildēti jautājumi: \n")
+            for i in nepareizi_atbildets:
+                print(f"Jautajums {i+1}: {self.jautajumi[i]['jautajums']}")
+                for atbilde in self.jautajumi[i]['atbildes']:
+                    print(atbilde)
+                print("")
                 
 jautajumi = [
     {
