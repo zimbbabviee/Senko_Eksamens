@@ -11,7 +11,11 @@
                 
             input_atbilde = input("\nIespējamas vairākas pareizas atbildes.\nIevadi pareizo atbilžu burtus atdalot ar komatu (piemēram A,B,C): ").replace(" ", "").upper()
             lietotaja_atbilde = set(input_atbilde.split(','))
-            print(lietotaja_atbilde)
+            
+            if lietotaja_atbilde == q['pareizas_atbildes']:
+                print('pareizi')
+            else:
+                print('nepareizi')
                 
 jautajumi = [
     {
