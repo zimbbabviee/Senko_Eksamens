@@ -9,6 +9,10 @@
             for atbilde in q['atbildes']:
                 print(atbilde)
                 
+            input_atbilde = input("\nIespējamas vairākas pareizas atbildes.\nIevadi pareizo atbilžu burtus atdalot ar komatu (piemēram A,B,C): ").replace(" ", "").upper()
+            lietotaja_atbilde = set(input_atbilde.split(','))
+            print(lietotaja_atbilde)
+                
 jautajumi = [
     {
         "jautajums": "...",
