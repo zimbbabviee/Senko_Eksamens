@@ -19,6 +19,8 @@
                 print(pareizas_atbildes)
             else:
                 print('nepareizi')
+        print("#####################################################################################")
+        print("\nAtbildēts pareizi uz ",pareizas_atbildes," jautājumiem.\n")
                 
 jautajumi = [
     {
@@ -28,6 +30,14 @@ jautajumi = [
                      "C) ...", 
                      "D) ..."],
         "pareizas_atbildes": {"A", "C"}
+    },
+    {
+        "jautajums": "...",
+        "atbildes": ["A) ...", 
+                     "B) ...", 
+                     "C) ...", 
+                     "D) ..."],
+        "pareizas_atbildes": {"A", "B"}
     }
 ]
 
