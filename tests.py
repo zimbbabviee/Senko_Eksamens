@@ -10,8 +10,26 @@ class Tests:
         self.nr = 0
         
     def pildit_testu(self, nr):
-        pazinojums = Label(self.root, text=f"palaist testu", pady=50)
-        pazinojums.pack()
+        for widget in self.root.winfo_children():
+            widget.destroy()
+            
+        jautajums = Label(self.root, text=f"\nJautajums {nr + 1}: {self.jautajumi[nr]['jautajums']}", justify="left")
+        jautajums.pack()
+            
+        var1 = IntVar()
+        var2 = IntVar()
+        var3 = IntVar()
+        var4 = IntVar()
+            
+        checkbox1 = Checkbutton(self.root, text=self.jautajumi[nr]['atbildes'][0], width = 200, anchor="w", padx=50, variable=var1)
+        checkbox2 = Checkbutton(self.root, text=self.jautajumi[nr]['atbildes'][1], width = 200, anchor="w", padx=50, variable=var2)
+        checkbox3 = Checkbutton(self.root, text=self.jautajumi[nr]['atbildes'][2], width = 200, anchor="w", padx=50, variable=var3)
+        checkbox4 = Checkbutton(self.root, text=self.jautajumi[nr]['atbildes'][3], width = 200, anchor="w", padx=50, variable=var4)
+           
+        checkbox1.pack()
+        checkbox2.pack()
+        checkbox3.pack()
+        checkbox4.pack()
         
     def palaist_testu(self):
         pazinojums = Label(self.root, text=f"Python while tests. \nTests sastāv no 10 jautājumiem, uz kuriem iespējamas 2 līdz 3 pareizas atbildes.", pady=50)
