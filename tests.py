@@ -1,34 +1,24 @@
-﻿class Tests:
+﻿from tkinter import *
+
+class Tests:
     def __init__(self, jautajumi):
         self.jautajumi = jautajumi
+        self.root = root
         
-    def pildit_testu(self):
-        nepareizi_atbildets = []
-        pareizas_atbildes = 0
+        self.nepareizi_atbildets = []
+        self.pareizas_atbildes = 0
+        self.nr = 0
         
-        for i, q in enumerate(self.jautajumi, 1):
-            print("--------------------------------------------------------------------------------")
-            print(f"\nJautajums {i}: {q['jautajums']}")
-            for atbilde in q['atbildes']:
-                print(atbilde)
-                
-            input_atbilde = input("\nIespējamas vairākas pareizas atbildes.\nIevadi pareizo atbilžu burtus atdalot ar komatu (piemēram a,b,c): ").replace(" ", "").upper()
-            lietotaja_atbilde = set(input_atbilde.split(','))
-            
-            if lietotaja_atbilde == q['pareizas_atbildes']:
-                pareizas_atbildes = pareizas_atbildes + 1
-            else:
-                nepareizi_atbildets.append(i-1)
-        print("#####################################################################################")
-        print("\nAtbildēts pareizi uz ",pareizas_atbildes," jautājumiem.\n")
+    def pildit_testu(self, nr):
+        pazinojums = Label(self.root, text=f"palaist testu", pady=50)
+        pazinojums.pack()
         
-        if len(nepareizi_atbildets) > 0:
-            print("Nepareizi atbildēti jautājumi: \n")
-            for i in nepareizi_atbildets:
-                print(f"Jautajums {i+1}: {self.jautajumi[i]['jautajums']}")
-                for atbilde in self.jautajumi[i]['atbildes']:
-                    print(atbilde)
-                print("")
+    def palaist_testu(self):
+        pazinojums = Label(self.root, text=f"Python while tests. \nTests sastāv no 10 jautājumiem, uz kuriem iespējamas 2 līdz 3 pareizas atbildes.", pady=50)
+        pazinojums.pack()
+        submit_button = Button(root, text="Sākt testu", command=lambda: self.pildit_testu(0))
+        submit_button.pack()
+        self.root.mainloop()
                 
 jautajumi = [
     {
@@ -122,5 +112,9 @@ jautajumi = [
     }
 ]
 
+root = Tk()
+root.title("Python while cikla tests")
+root.geometry('800x450')
+
 T = Tests(jautajumi)
-T.pildit_testu()
+T.palaist_testu()
