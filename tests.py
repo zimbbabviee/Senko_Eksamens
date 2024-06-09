@@ -28,6 +28,42 @@ class Tests:
         if (self.nr + 1 < len(self.jautajumi)):
             self.nr = self.nr + 1
             self.pildit_testu(self.nr)
+        else:
+            self.pazinot_rezultatu()
+            
+    def pazinot_rezultatu(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+            
+        pazinojums = Label(self.root, text="Testa izpilde beigusies", pady=20)
+        pazinojums.pack()
+        pazinojums = Label(self.root, text=f"Atbildēts pareizi uz {self.pareizas_atbildes} jautājumiem.\n", pady=20)
+        pazinojums.pack()
+
+        if(len(self.nepareizi_atbildets)>0):
+            pazinojums = Label(self.root, text="Nepareizi atbildēti jautājumi:\n")
+            pazinojums.pack()            
+
+            container = Frame(self.root)
+            canvas = Canvas(container)
+            scrollbar = Scrollbar(container, orient="vertical", command=canvas.yview)
+            scrollable_frame = Frame(canvas)
+            scrollable_frame.bind("<Configure>", lambda e: canvas.configure( scrollregion=canvas.bbox("all")))
+            canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+            canvas.configure(yscrollcommand=scrollbar.set)
+            
+            for i in self.nepareizi_atbildets:
+                nepareizs_jautajums = Label(scrollable_frame, text=f"Jautajums {i+1}: {self.jautajumi[i]['jautajums']}", width = 200, anchor="w", padx=50, justify="left")
+                nepareizs_jautajums.pack()
+                for atbilde in self.jautajumi[i]['atbildes']:
+                    atbildes = Label(scrollable_frame, text=atbilde, width = 200, anchor="w", padx=50,)
+                    atbildes.pack()
+                nepareizs_jautajums = Label(scrollable_frame, text="\n")
+                nepareizs_jautajums.pack()
+
+            container.pack(fill=BOTH, expand=1)
+            canvas.pack(side="left", fill="both", expand=1)
+            scrollbar.pack(side="right", fill="y") 
         
     def pildit_testu(self, nr):
         for widget in self.root.winfo_children():
