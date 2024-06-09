@@ -9,6 +9,26 @@ class Tests:
         self.pareizas_atbildes = 0
         self.nr = 0
         
+    def parbaudit_atbildi(self, var1, var2, var3, var4, atbilde):
+        selected = []
+        if var1.get():
+            selected.append("A")
+        if var2.get():
+            selected.append("B")
+        if var3.get():
+            selected.append("C")
+        if var4.get():
+            selected.append("D")
+
+        if set(selected) == atbilde:
+            self.pareizas_atbildes = self.pareizas_atbildes + 1
+        else:
+            self.nepareizi_atbildets.append(self.nr)
+        
+        if (self.nr + 1 < len(self.jautajumi)):
+            self.nr = self.nr + 1
+            self.pildit_testu(self.nr)
+        
     def pildit_testu(self, nr):
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -30,6 +50,9 @@ class Tests:
         checkbox2.pack()
         checkbox3.pack()
         checkbox4.pack()
+        
+        submit_button = Button(root, text="Atbildēt", command=lambda: self.parbaudit_atbildi(var1, var2, var3, var4, self.jautajumi[nr]['pareizas_atbildes']))
+        submit_button.pack()
         
     def palaist_testu(self):
         pazinojums = Label(self.root, text=f"Python while tests. \nTests sastāv no 10 jautājumiem, uz kuriem iespējamas 2 līdz 3 pareizas atbildes.", pady=50)
